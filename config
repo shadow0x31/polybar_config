@@ -1,0 +1,506 @@
+;[colors]
+;background = #0d0f17
+;background-alt = #444
+;foreground = #dfdfdf
+;foreground-alt = #555
+;primary = #00557f
+;secondary = #e60053
+;alert = #bd2c40
+
+[colors]
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color0:#222}
+foreground = ${xrdb:color7:#222}
+foreground-alt = ${xrdb:color7:#222}
+primary = ${xrdb:color1:#222}
+secondary = ${xrdb:color2:#222}
+alert = ${xrdb:color3:#222}
+
+col1 = ${xrdb:color6:#222}
+col2 = ${xrdb:color14:#222}
+col3 = ${xrdb:color15:#222}
+col4 = ${xrdb:color5:#222}
+
+[bar/test]
+bottom = false
+scroll-up = i3-msg workspace next_on_output
+scroll-down = i3-msg workspace prev_on_output
+width = 90%
+height = 27
+radius = 0
+fixed-center = true
+override-redirect = true
+enable-ipc = true
+offset-x = 5%
+offset-y = 0.4%
+
+;width = 90%
+;height = 28
+;offset-x = 1%
+;offset-y = 20%
+;radius = 10.0
+;fixed-center = true
+;bottom = false
+separator =  ""
+
+;background = 00
+background = ${colors.background}
+foreground = ${colors.foreground-alt}
+
+wm-restack = i3
+
+line-size = 5
+
+border-size = 0
+;border-color = ${colors.primary}
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1 
+
+font-0 = "Hack:size=9;1"
+;font-0 = "monospace:size=9;1"
+font-1 = "Font Awesome 6 Free:style=Regular:size=9;0"
+font-2 = "Font Awesome 6 Free:style=Solid:size=9;0"
+font-3 = "Font Awesome 6 Brands:style=Regular:size=9;0"
+
+modules-left =i2 title 
+modules-center = memory cpu
+modules-right = xkeyboard volume_percentage battery date
+
+tray-position = right 
+tray-padding = 2
+tray-radius = 10.0
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/sp]
+type = custom/text
+content = "  "
+click-left = "rofi -show window"
+content-foreground = ${colors.foreground}
+content-background = ${colors.alert}
+content-padding = 0
+
+[module/STATS]
+type = custom/text
+content = ""
+click-left = bash ~/msg.sh
+click-right = bash ~/msg.sh
+content-padding = 1
+content-underline = ${colors.alert}
+
+[module/title]
+type = internal/xwindow
+format =   <label>
+format-foreground = ${colors.foreground}
+;format-underline = ${colors.primary}
+format-padding = 0
+label =%title%
+label-maxlen = 40
+label-empty =Manjaro Linux
+label-empty-foreground = ${colors.foreground}
+;label-empty-underline = ${colors.alert}
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = AC
+full-at = 100
+interval = 1
+
+format-charging = <animation-charging> <label-charging>
+;format-charging-underline = 
+
+format-discharging = <ramp-capacity> <label-discharging>
+;format-discharging-underline = ${colors.col4}
+
+format-full-prefix = " "
+;format-full-prefix-foreground = ${colors.foreground-alt}
+;format-full-underline = ${colors.col3}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+;ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 =  ⚡
+animation-charging-1 =  ⚡
+animation-charging-2 =  ⚡
+;animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+;animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+warn-temperature = 60
+
+units = true
+
+format = <label>
+format-warn = <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = #f00
+format-foreground = ${colors.foreground}
+;format-underline = ${colors.primary}
+;format-warn-underline = #f00
+
+[module/i2]
+type = internal/i3
+
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+pin-workspaces = true
+index-sort = true
+strip-wsnumbers = true
+fuzzy-match = true
+
+format = <label-state> <label-mode>
+
+ws-icon-0 = 1; 
+ws-icon-1 = 2; 
+ws-icon-2 = 3; 
+ws-icon-3 = 4;
+ws-icon-4 = 5;  
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8; 
+ws-icon-8 = 9;
+ws-icon-9 = 10;⬤
+ws-icon-default =   
+
+
+;ws-icon-0 = 1;⬤
+;ws-icon-1 = 2;⬤ 
+;ws-icon-2 = 3;⬤ 
+;ws-icon-3 = 4;⬤
+;ws-icon-4 = 5;⬤ 
+;ws-icon-5 = 6;⬤
+;ws-icon-6 = 7;⬤
+;ws-icon-7 = 8;⬤ 
+;ws-icon-8 = 9;⬤
+;ws-icon-9 = 10;⬤
+;ws-icon-default = ⬤  
+
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-foreground = #000
+label-mode-background = ${colors.alert}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.alert}
+label-focused-underline = ${colors.alert}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 1
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-background = ${colors.background-alt}
+;label-unfocused-underline = ${colors.primary}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+;label-visible-background = ${self.label-focused-background}
+;label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+label-empty = %icon%
+label-empty-padding = 2
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+;label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = ${colors.col1}
+label = "%percentage:2%%"
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = ${colors.col3}
+warn-percentage = 90
+;label = " %mb_used%"
+;%gb_total%
+label = " %percentage_used%%"
+
+[module/volume_percentage]
+type = internal/volume
+
+format-volume-prefix = " "
+;format-volume-prefix = "VOL "
+;format-volume-prefix-foreground = ${colors.foreground-alt}
+format-volume = <label-volume>
+;format-volume-underline = ${colors.foreground}
+
+label-volume = %percentage%%
+;label-volume-foreground = ${colors.foreground}
+;label-volume-underline = ${colors.foreground}
+
+;format-muted-foreground = ${colors.foreground}
+format-muted-prefix = " "
+;format-muted-prefix-foreground = ${colors.foreground-alt}
+label-muted = muted
+;label-muted-foreground = ${colors.urgent}
+;format-muted-underline = #DA2A30
+;format-foreground = ${colors.primary}
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground-alt}
+;format-prefix-underline = ${colors.secondary}
+
+label-layout = " %layout%"
+;label-layout-underline = ${colors.alert}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+;label-indicator-underline = ${colors.secondary}
+
+[module/net]
+type = internal/network
+interface = wlp9s0
+label-connected = " %upspeed:7%  %downspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix-foreground = ${colors.foreground}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = [%mountpoint%%{F-}] %percentage_used%%
+label-mounted-foreground = ${colors.foreground}
+;label-mounted-underline = ${colors.alert}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = ${colors.col1}
+
+label = %date%  %time%
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+
+
+
+
+
+
+
+
+
+;==============================================================================================================================
+
+[bar/dock]
+bottom = true
+scroll-up = i3-msg workspace next_on_output
+scroll-down = i3-msg workspace prev_on_output
+width = 100%
+height = 25
+radius = 10
+fixed-center = true
+
+background = ${colors.background}
+
+line-size = 0
+
+separator = ""
+
+border-size = 0
+;border-color = ${colors.primary}
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+override-redirect = false
+
+;font-0 = "Source Code Pro Semibold:size=8;1"
+font-0 = "monospace:size=9;1"
+font-1 = "Font Awesome 6 Free:style=Regular:size=9;0"
+font-2 = "Font Awesome 6 Free:style=Solid:size=9;0"
+font-3 = "Font Awesome 6 Brands:style=Regular:size=9;0"
+
+modules-left = filesystem2 cpu2 temperature2 memory2 
+modules-center = apps wallpaper config term code files music gimp browser chat
+modules-right = net2 kernel2
+
+
+[module/temperature2]
+type = internal/temperature
+warn-temperature = 60
+
+units = true
+
+format = <label>
+format-warn = <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = #f00
+format-foreground = ${colors.primary}
+format-underline = ${colors.primary}
+format-warn-underline = #f00
+
+
+[module/net2]
+type = internal/network
+interface = wlp9s0
+label-connected = " %upspeed:7%  %downspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix-foreground = ${colors.foreground}
+
+[module/filesystem2]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted-foreground = ${colors.foreground}
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/cpu2]
+type = internal/cpu
+interval = 2
+format-prefix = ""
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.col1}
+label = "%percentage:2%%"
+
+[module/memory2]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.col3}
+warn-percentage = 90
+;label = "  %gb_used%/%gb_total%"
+label = " %percentage_used%%"
+
+
+[module/kernel2]
+type = custom/script
+exec = uname -r
+tail = false
+interval = 1024
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-prefix = "  "
+format-prefix-foreground = #0084FF
+format-underline = #4B5665
+
+
+;==============================================================================
+[module/code]
+type = custom/text
+content = ""
+click-left = kitty -e nvim
+click-right = kitty -e nvim
+;==============================================================================
+[module/files]
+type = custom/text
+content = ""
+click-left = kitty -e ranger
+click-right = kitty -e ranger
+;==============================================================================
+[module/music]
+type = custom/text
+content = " "
+click-left = kitty -e musikcube
+click-right = kitty -e musikcube
+;==============================================================================
+[module/apps]
+type = custom/text
+content = ""
+click-left = bash /home/shadow/.config/rofi/launchers/type-3/launcher.sh
+click-right = bash /home/shadow/.config/rofi/launchers/type-3/launcher.sh
+;==============================================================================
+[module/chat]
+type = custom/text
+content = ""
+click-left = telegram-desktop
+click-right = telegram-desktop
+;==============================================================================
+[module/browser]
+type = custom/text
+content = ""
+click-left = qutebrowser
+click-right = qutebrowser
+;==============================================================================
+[module/term]
+type = custom/text
+content = ""
+click-left = kitty
+click-right = kitty
+;==============================================================================
+[module/wallpaper]
+type = custom/text
+content = "  "
+content-underline = ${colors.alert}
+click-left = bash /bin/themechanger
+click-right = bash /bin/themechanger
+;==============================================================================
+[module/config]
+type = custom/text
+content = ""
+click-left = bash /home/shadow/scripts/confedit
+click-right = bash /home/shadow/scripts/confedit
+;==============================================================================
+[module/gimp]
+type = custom/text
+content = ""
+click-left = gimp
+click-right = gimp
+;==============================================================================
